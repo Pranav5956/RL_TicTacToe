@@ -1,0 +1,44 @@
+from pygame.color import Color
+from pygame.font import Font, init as initialize_fonts
+
+initialize_fonts()
+
+# Display settings
+TILE_SIZE = 32
+TILE_ROW_COUNT = 24
+TILE_COL_COUNT = 24
+
+SCREEN_WIDTH = TILE_SIZE * TILE_COL_COUNT
+SCREEN_HEIGHT = TILE_SIZE * TILE_ROW_COUNT
+MAX_FPS = 100
+STEP_TIME = 0.0001
+
+# Colors
+BLACK = Color(0, 0, 0)
+WHITE = Color(255, 255, 255)
+GREEN = Color(0, 255, 0)
+BLUE = Color(0, 0, 255)
+RED = Color(255, 0, 0)
+CYAN = Color(0, 255, 255)
+YELLOW = Color(255, 255, 0)
+MAGENTA = Color(255, 0, 255)
+
+# Debug Settings
+DEBUG_FONT = Font(None, 22)
+DEBUG_HORIZONTAL_MARGIN = 5
+DEBUG_VERTICAL_MARGIN = 5
+DEBUG_HORIZONTAL_PADDING = 5
+DEBUG_VERTICAL_PADDING = 5
+DEBUG_VERTICAL_SPACING = 3
+
+# Spawn Settings
+MAX_COIN_SPAWNS = 5
+
+# Trainer Settings
+EPISODES = 100
+STEPS_PER_EPISODE = TILE_ROW_COUNT * TILE_COL_COUNT
+LEARNING_RATE = 0.01
+GAMMA = 0.99
+EXP_RATE = 1
+EXP_RATE_DECREASE = 0.001
+EXP_RATE_MINIMUM = 0.01

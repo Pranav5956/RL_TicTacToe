@@ -1,22 +1,26 @@
 from typing import Any
 import pygame
-from constants import *
+from utils.constants import *
 
 debug_messages = {}
+debug_order = []
 
 
 def debug(key: str = "DEBUG", message: Any = "Debug Message"):
-    if key not in debug_messages.keys():
-        try:
-            debug_messages[key] = key + " : " + str(message)
-        except TypeError:
-            debug_messages[key] = key + " : [UNDEFINED]"
+    try:
+        debug_messages[key] = key + " : " + str(message)
+        if key not in debug_order:
+            debug_order.append(key)
+    except TypeError:
+        debug_messages[key] = key + " : [UNDEFINED]"
+        if key not in debug_order:
+            debug_order.append(key)
 
     # Get dimensions of debug texts
     debug_displays = []
     debug_max_text_width = -1
     debug_text_height = 0
-    for debug_message_key in sorted(debug_messages.keys()):
+    for debug_message_key in debug_order:
         debug_surf = DEBUG_FONT.render(
             debug_messages[debug_message_key], True, WHITE)
         debug_displays.append(debug_surf)
@@ -35,7 +39,7 @@ def debug(key: str = "DEBUG", message: Any = "Debug Message"):
         debug_text_height + DEBUG_VERTICAL_SPACING *
         (len(debug_displays) - 1) + DEBUG_VERTICAL_PADDING * 2
     )
-    pygame.draw.rect(display_surf, BLACK, debug_box_rect)
+    pygame.draw.rect(display_surf, BLUE, debug_box_rect)
 
     # Draw the debug texts
     previous_y = DEBUG_VERTICAL_MARGIN + DEBUG_VERTICAL_PADDING
